@@ -34,5 +34,9 @@ export const singout = (next) =>{
     if(typeof window !=='undefined'){
         localStorage.removeItem('jwt');
         next();
+
+        return fetch(`${API}/user/singout`)
+        .then(response => console.log(response))
+        .catch(err => console.log(err));
     }
 }

@@ -37,17 +37,18 @@ export default function Form() {
         })
     };
     const showLoading = () =>(
-        loading && (<div className="alert alert-info"><h2>Loading..</h2></div>)
+        loading && (<div className="alert alert-info"><h2>Loading...</h2></div>)
     );
     const redirectUser = ()=>{
         if(redirectToReferrer){
             if(user){
-                return  <Redirect to="/dashboard"/>
-            }else{
-                return <Redirect to="/"/>
+                return <Redirect to="/dashboard"/>
+            } else{
+                return <Redirect to ="/singin"/>
             }
-
-        }if(isAuthenticated()){
+        }
+        
+        if(isAuthenticated()){
             return <Redirect to="/dashboard"/>
         }
     }
