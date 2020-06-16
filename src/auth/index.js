@@ -40,3 +40,18 @@ export const singout = (next) =>{
         .catch(err => console.log(err));
     }
 }
+
+export const createPrice = (token,price) =>{
+    return fetch(`${API}/price/create`,{
+        method:"POST",
+        headers:{
+            Accept:'application/json',
+            "Content-Type":"application/json",
+            Authorization:`Bearer ${token}`
+        },
+        body:JSON.stringify(price)
+
+    })
+    .then(response => console.log(response))
+    .catch(err => console.log(err))
+}
