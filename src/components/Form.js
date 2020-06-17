@@ -1,57 +1,55 @@
 import React,{useState} from 'react';
 import './Form.css';
 import {singin, authenticate, isAuthenticated } from  '../auth/index';
-import { Redirect } from  'react-router-dom';
+import { useHistory} from  'react-router-dom';
 
 export default function Form() {
     const [values, setValues] = useState({
         name:"edgar",
         password:"edgar1234",
-        error:"",
+        error:'',
         loading:false,
-        redirectToReferrer: false
     });
 
-    const { user } = isAuthenticated();
 
-    const {name, password, error, loading, redirectToReferrer} = values;
+    const history = useHistory();
+
+    const {name, password, loading, error} = values;
 
     const hadleChange = name => event =>{
-        setValues({...values, error:false,[name]:event.target.value})
+        setValues({...values, [name]:event.target.value})
     };
 
     const clickSubmit = event =>{
         event.preventDefault();
-        setValues({...values, error:false, loading:true})
+        setValues({...values, loading:true})
         singin({name, password}).then( data =>{
             if(data.error){
                 setValues({...values,error:data.error, loading:false});
             }else{
                 authenticate(data, ()=>{
                     setValues({
-                        ...values,
-                        redirectToReferrer:true
+                        ...values
                     })
                 })
+                history.push('/dashboard');
+                
+
             }
         })
     };
     const showLoading = () =>(
-        loading && (<div className="alert alert-info"><h2>Loading...</h2></div>)
+        loading && (<h2>Carregando...</h2>)
     );
-    const redirectUser = ()=>{
-        if(redirectToReferrer){
-            if(user){
-                return <Redirect to="/dashboard"/>
-            } else{
-                return <Redirect to ="/singin"/>
-            }
-        }
-        
-        if(isAuthenticated()){
-            return <Redirect to="/dashboard"/>
-        }
-    }
+    
+
+    const showError = () =>(
+        <div className="alert alert-danger" style={{display:error ? '' : 'none'}}>
+
+            {error}
+
+        </div>
+    )
 
     const singinForm = () =>(
         
@@ -83,8 +81,9 @@ export default function Form() {
     return (
        <div>
            {showLoading()}
+           {showError()}
            {singinForm()}
-           {redirectUser()}
+           {/* {redirectUser()} */}
        </div>
     )
 }
