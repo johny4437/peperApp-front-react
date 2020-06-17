@@ -7,7 +7,7 @@ function PrivateRouter({component:Component, ...rest}) {
         <Route {...rest}  render={props => isAuthenticated() ? (
             <Component {...props}/>
         ) : (
-            <Redirect to={{pathname:'/singin', state:{from:props.location}}}/>
+            <Redirect to={{pathname:'/', state:{from:props.location}}}/>
         )
         } />
     )

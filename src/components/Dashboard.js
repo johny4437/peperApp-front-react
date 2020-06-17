@@ -4,32 +4,29 @@ import FormPrice from './FormPrice';
 import { useHistory } from "react-router-dom";
 import {singout, isAuthenticated} from '../auth/index';
 
-export default function Dashboard() {
+
+ function Dashboard() {
     const history = useHistory();
 
     const headerDash = () =>(
         <div className="menu">
+            <div className="logo">
+                Dashboard <span>Administrativo</span>
+            </div>
             <ul>
                 {isAuthenticated && 
-                <li onClick={()=>singout(()=> history.push('/singin'))}>Sair</li>}
+                <li onClick={()=>singout(()=> history.push('/'))}>Logout</li>}
                 <li>Dados</li>
             </ul>
         </div>
     ) 
-    const titleDashboard = () =>(
-        <div className="title">
-                <div className="logo">
-                    Dashboard de  <span>Preço</span>
-                </div>
-        </div>
-        
-    )
+
 
     return (
-        <div>
+        <div className="container">
             {headerDash()}
-            {titleDashboard()}
             <FormPrice/>
         </div>
     )
 }
+export default Dashboard;

@@ -9,7 +9,7 @@ import PrivateRouter from './auth/PrivateRouter';
     return (
        <BrowserRouter>
         <Switch>
-            <Route path="/singin" exact component={Form}/>
+            <Route path="/" exact component={Form}/>
             <PrivateRouter path="/dashboard" exact component={Dashboard}/>
         </Switch>
        </BrowserRouter>

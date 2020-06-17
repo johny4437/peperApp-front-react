@@ -2,6 +2,7 @@ import React,{useState} from 'react';
 import './Form.css';
 import {singin, authenticate, isAuthenticated } from  '../auth/index';
 import { useHistory} from  'react-router-dom';
+import logo from '../images/loginP.png';
 
 export default function Form() {
     const [values, setValues] = useState({
@@ -55,6 +56,7 @@ export default function Form() {
         
             <div className="container">
             <div className="loginbox">
+            <img src={logo} className="avatar"/>
                 <h1>Login</h1>
                 <form >
                     <p>Usuário</p>
