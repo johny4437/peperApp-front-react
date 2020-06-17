@@ -1,6 +1,6 @@
 import React,{useState} from 'react'
 import './FormPrice.css';
-import {createPrice, isAuthenticated}  from '../auth/index';
+import {createPrice, isAuthenticated}  from '../../auth/index';
 
 
 export default function FormPrice() {

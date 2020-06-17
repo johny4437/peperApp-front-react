@@ -1,8 +1,8 @@
 import React,{useState} from 'react';
 import './Form.css';
-import {singin, authenticate, isAuthenticated } from  '../auth/index';
+import {singin, authenticate, isAuthenticated } from  '../../auth/index';
 import { useHistory} from  'react-router-dom';
-import logo from '../images/loginP.png';
+import logo from '../../images/loginP.png';
 
 export default function Form() {
     const [values, setValues] = useState({

@@ -1,8 +1,8 @@
 import React from 'react'
 import './Dashboard.css';
-import FormPrice from './FormPrice';
+import FormPrice from '../FormPrice';
 import { useHistory } from "react-router-dom";
-import {singout, isAuthenticated} from '../auth/index';
+import {singout, isAuthenticated} from '../../auth/index';
 
 
  function Dashboard() {
