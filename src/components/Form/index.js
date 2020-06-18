@@ -1,8 +1,12 @@
 import React,{useState} from 'react';
 import './Form.css';
-import {singin, authenticate, isAuthenticated } from  '../../auth/index';
+
+import api from  '../../services/api';
+import {authenticate} from    '../../services/auth';
 import { useHistory} from  'react-router-dom';
 import logo from '../../images/loginP.png';
+
+
 
 export default function Form() {
     const [values, setValues] = useState({
@@ -16,28 +20,44 @@ export default function Form() {
     const history = useHistory();
 
     const {name, password, loading, error} = values;
+    
 
     const hadleChange = name => event =>{
         setValues({...values, [name]:event.target.value})
     };
 
-    const clickSubmit = event =>{
+    const clickSubmit = async event =>{
         event.preventDefault();
-        setValues({...values, loading:true})
-        singin({name, password}).then( data =>{
-            if(data.error){
-                setValues({...values,error:data.error, loading:false});
+        api.post('user/singin',{name, password})
+        .then(response =>{
+            if(response.data.error){
+                setValues({error:response.data.error});
             }else{
-                authenticate(data, ()=>{
-                    setValues({
-                        ...values
-                    })
+                authenticate(response.data.token,()=>{
+                    setValues({...values})
                 })
-                history.push('/dashboard');
-                
 
+                history.push('/dashboard')
             }
         })
+          
+       
+       
+       
+        // setValues({...values, loading:true})
+        // Singin({name, password}).then( data =>{
+        //     if(data.error){
+        //         setValues({...values,error:data.error, loading:false});
+        //     }else{
+        //         authenticate(data.token, ()=>{
+        //             setValues({
+        //                 ...values
+        //             })
+        //         })
+        //         history.push('/dashboard');
+                
+
+        //     }})
     };
     const showLoading = () =>(
         loading && (<h2>Carregando...</h2>)
