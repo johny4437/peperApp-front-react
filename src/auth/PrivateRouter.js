@@ -1,6 +1,6 @@
 import React from 'react';
 import {Route, Redirect} from 'react-router-dom';
-import {isAuthenticated} from '../services/auth'
+import {isAuthenticated} from '../auth/index'
 
 function PrivateRouter({component:Component, ...rest}) {
     return (

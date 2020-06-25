@@ -2,7 +2,7 @@ import React from 'react'
 import './Dashboard.css';
 import FormPrice from '../FormPrice';
 import { useHistory } from "react-router-dom";
-import {logout, isAuthenticated} from '../../services/auth';
+import {singout, isAuthenticated} from  '../../auth/index';
 
 
  function Dashboard() {
@@ -15,7 +15,7 @@ import {logout, isAuthenticated} from '../../services/auth';
             </div>
             <ul>
                 {isAuthenticated && 
-                <li onClick={()=>logout(()=> history.push('/'))}>Logout</li>}
+                <li onClick={()=>singout(()=> history.push('/'))}>Logout</li>}
                 <li>Dados</li>
             </ul>
         </div>

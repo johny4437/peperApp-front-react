@@ -1,32 +1,49 @@
 import React,{useState} from 'react'
 import './FormPrice.css';
-import {getToken, isAuthenticated} from '../../services/auth';
-import api from   '../../services/api';
+import axios from 'axios';
 
 
 export default function FormPrice() {
-    const [price, setPrice] = useState('');
+    const [values, setValues] = useState('');
 
-    const { token } = getToken();
+
+    
+
+    
+
+   
     
 
 
     const handleChange = event =>{
-        setPrice( event.target.value);
+        
+        setValues(event.target.value);
     };
 
-    const clickSubmit = (event) =>{
+   
+    const clickSubmit = async (event) =>{
         event.preventDefault();
-        api.post('price/create', price,{
+        let token =  JSON.parse(localStorage.getItem('jwt'));
+        console.log( typeof values)
+        await fetch('http://localhost:4000/price/create',{
+            method:"POST",
             headers:{
-            Accept:'application/json',
-            "Content-Type":"application/json",
-             Authorization:`Bearer ${token}`
-            }
-        });
-        // createPrice(token, price)
-        // .then(data =>console.log(data))
-        // .catch(err => console.log(err));
+                 Accept: 'application/json',
+                'Content-Type': 'application/json',
+                "x-auth-token":token,
+                
+               
+                
+            },
+            body:JSON.parse(values)
+
+        }).then(response =>{
+            response.json().then(result=>{
+                console.log(result)
+            })
+        })
+        
+    
     }
 
     return (
@@ -35,9 +52,9 @@ export default function FormPrice() {
                 <form onSubmit={clickSubmit}>
                     <p>Preço</p>
                      <input 
-                     type="number"
+                     type="text"
                       onChange={handleChange} 
-                      value={price}
+                      value={values}
                       step="0.01" 
                       min="0.00"/>
                      <input 
@@ -47,6 +64,8 @@ export default function FormPrice() {
                      />
                 </form>
             </div>
+
+            {values}
             
         </div>
     )

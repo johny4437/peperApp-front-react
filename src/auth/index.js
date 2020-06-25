@@ -1,10 +1,10 @@
 import {API} from '../Config/API';
-import axios from  'axios'
+
 
 export const singin = user =>{
     
    
-    return fetch(`${API}/user/singin`,{
+    return fetch(`${API}/user/login`,{
         method:"POST",
         headers:{
             Accept:'application/json',
@@ -50,33 +50,20 @@ export const singout = (next) =>{
     }
 }
 
-export const createPrice = (price) =>{
-        
-    const api = axios.create({
-        baseURL:'http://localhost:4000',
+export const createPrice = async (token, price) =>{
+    
+    return await fetch(`${API}/price/create`,{
+        method:"POST",
         headers:{
+            Accept:'application/json',
+            "Content-Type":"application/json",
+            Authorization:`Bearer ${token}`
+        },
+        body:JSON.parse(price)
 
-            "Content-Type":"application/json; charset=utf-8"
-        }
-    });
-
-    return api.post('price/create', price)
-    .then(response=>{
-        return response.json();
     })
-    .catch(err=>console.log(err));
-    // return fetch(`${API}/price/create`,{
-    //     method:"POST",
-    //     headers:{
-    //         Accept:'application/json',
-    //         "Content-Type":"application/json",
-    //         // Authorization:`Bearer ${token}`
-    //     },
-    //     body:JSON.parse(price)
-
-    // })
-    // .then(response => {
-    //     return response.json()
-    // })
-    // .catch(err => console.log(err))
+    .then(response => {
+        return response.json()
+    })
+    .catch(err => console.log(err))
 }

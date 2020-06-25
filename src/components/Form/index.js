@@ -1,8 +1,6 @@
 import React,{useState} from 'react';
 import './Form.css';
-
-import api from  '../../services/api';
-import {authenticate} from    '../../services/auth';
+import {authenticate, singin} from    '../../auth/index';
 import { useHistory} from  'react-router-dom';
 import logo from '../../images/loginP.png';
 
@@ -10,14 +8,14 @@ import logo from '../../images/loginP.png';
 
 export default function Form() {
     const [values, setValues] = useState({
-        name:"edgar",
-        password:"edgar1234",
+        name:"johny",
+        password:"johny1234",
         error:'',
         loading:false,
     });
 
 
-    const history = useHistory();
+    const  history = useHistory();
 
     const {name, password, loading, error} = values;
     
@@ -26,38 +24,23 @@ export default function Form() {
         setValues({...values, [name]:event.target.value})
     };
 
-    const clickSubmit = async event =>{
+    const clickSubmit = event =>{
         event.preventDefault();
-        api.post('user/singin',{name, password})
-        .then(response =>{
-            if(response.data.error){
-                setValues({error:response.data.error});
+       setValues({...values, loading:true})
+        singin({name, password}).then( data =>{
+            if(data.error){
+                setValues({...values,error:data.error, loading:false});
             }else{
-                authenticate(response.data.token,()=>{
-                    setValues({...values})
+                authenticate(data.token, ()=>{
+                    setValues({
+                        ...values
+                    })
                 })
-
-                history.push('/dashboard')
-            }
-        })
-          
-       
-       
-       
-        // setValues({...values, loading:true})
-        // Singin({name, password}).then( data =>{
-        //     if(data.error){
-        //         setValues({...values,error:data.error, loading:false});
-        //     }else{
-        //         authenticate(data.token, ()=>{
-        //             setValues({
-        //                 ...values
-        //             })
-        //         })
-        //         history.push('/dashboard');
+                history.push('/dashboard');
                 
 
-        //     }})
+            }
+        })
     };
     const showLoading = () =>(
         loading && (<h2>Carregando...</h2>)
@@ -76,7 +59,7 @@ export default function Form() {
         
             <div className="container">
             <div className="loginbox">
-            <img src={logo} className="avatar"/>
+            <img src={logo} className="avatar" alt="avatar"/>
                 <h1>Login</h1>
                 <form >
                     <p>Usuário</p>
