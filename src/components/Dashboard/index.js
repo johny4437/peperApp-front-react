@@ -9,16 +9,36 @@ import {singout, isAuthenticated} from  '../../auth/index';
     const history = useHistory();
 
     const headerDash = () =>(
-        <div className="menu">
-            <div className="logo">
-                Dashboard <span>Administrativo</span>
+        <div class="container">
+        <nav>
+            <div class="logo">
+                Admin<span>Panel</span>
             </div>
-            <ul>
-                {isAuthenticated && 
-                <li onClick={()=>singout(()=> history.push('/'))}>Logout</li>}
-                <li>Dados</li>
+            <ul id="menu">
+                <li><a href=""><i className="fa fa-fw fa-home"></i>Home</a></li>
+                <li><a onclick="changeUrl()"><i class="fa fa-product-hunt"></i>Produtos</a></li>
+                <li><a href=""><i className="fa fa-fw fa-user"></i>Clientes</a></li>
+                <li><a href=""><i className="fa fa-fw fa-wrench"></i>Serviços</a></li>
+                <li><a href=""><i className="fa fa-fw fa-envelope"></i>Contatos</a></li>
             </ul>
-        </div>
+        </nav>
+        <header>
+            <div id="links">
+                <a href=""><i className="logout"></i>Logout</a>
+            </div>
+        </header>
+
+</div>
+
+
+    
+    
+    
+            
+           
+
+           
+        
     ) 
 
 

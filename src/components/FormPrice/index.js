@@ -1,47 +1,35 @@
 import React,{useState} from 'react'
 import './FormPrice.css';
-import axios from 'axios';
+
 
 
 export default function FormPrice() {
-    const [values, setValues] = useState('');
+    const [price, setPrice] = useState("");
 
 
-    
-
-    
-
-   
-    
-
-
-    const handleChange = event =>{
-        
-        setValues(event.target.value);
-    };
-
-   
-    const clickSubmit = async (event) =>{
+    const clickSubmit = async event =>{
         event.preventDefault();
+       
         let token =  JSON.parse(localStorage.getItem('jwt'));
-        console.log( typeof values)
+        console.log(typeof price)
+        console.log(price)
+
         await fetch('http://localhost:4000/price/create',{
             method:"POST",
             headers:{
-                 Accept: 'application/json',
-                'Content-Type': 'application/json',
+                "Content-Type": "application/json",
+                "Accept":"application/json",
                 "x-auth-token":token,
                 
                
                 
             },
-            body:JSON.parse(values)
+            body:JSON.stringify({price})
 
         }).then(response =>{
-            response.json().then(result=>{
-                console.log(result)
-            })
-        })
+            return  response.json()
+            }).catch(err => console.log(err))
+        
         
     
     }
@@ -53,20 +41,18 @@ export default function FormPrice() {
                     <p>Preço</p>
                      <input 
                      type="text"
-                      onChange={handleChange} 
-                      value={values}
+                      value={price}
+                      onChange={e => setPrice(e.target.value)} 
                       step="0.01" 
                       min="0.00"/>
                      <input 
+                     
                      type='submit' 
                      value="adicionar"
                      
                      />
                 </form>
             </div>
-
-            {values}
-            
         </div>
     )
 }
