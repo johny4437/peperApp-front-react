@@ -9,7 +9,7 @@ const defaultMaskOptions = {
   includeThousandsSeparator: true,
   thousandsSeparatorSymbol: ',',
   allowDecimal: true,
-  decimalSymbol: '.',
+  decimalSymbol: ',',
   decimalLimit: 2, // how many digits allowed after the decimal
   integerLimit: 7, // limit length of integer numbers
   allowNegative: false,
