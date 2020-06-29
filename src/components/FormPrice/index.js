@@ -15,6 +15,7 @@ export default function FormPrice() {
        
         let token =  JSON.parse(localStorage.getItem('jwt'));
         console.log(typeof price)
+        const formatedPrice = price.replace("R$ ", "")
         console.log(price)
 
         await fetch('http://www.burnbrain.net/peper/price/create',{
@@ -27,7 +28,7 @@ export default function FormPrice() {
                
                 
             },
-            body:JSON.stringify({price})
+            body:JSON.stringify({price: formatedPrice})
 
         }).then(response =>{
             return  response.json()
@@ -45,7 +46,7 @@ export default function FormPrice() {
            
                 <p>Preço</p>
                 <form onSubmit={clickSubmit}>
-                   <CurrencyInput type="text" placeholder="$0.00" value={price} onChange={e => setPrice(e.target.value)} />
+                   <CurrencyInput type="text" placeholder="R$ 0,00" value={price} onChange={e => setPrice(e.target.value)} />
                      
                      <input 
                      
