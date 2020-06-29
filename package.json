@@ -12,10 +12,16 @@
     "@uifabric/react-cards": "^0.109.100",
     "axios": "^0.19.2",
     "material-ui": "^0.20.2",
+    "prop-types": "^15.7.2",
     "react": "^16.13.1",
+    "react-currency-masked-input": "^2.5.0",
     "react-dom": "^16.13.1",
+    "react-input-mask": "^2.0.4",
+    "react-masked-text": "^0.4.1",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "3.4.1"
+    "react-scripts": "3.4.1",
+    "react-text-mask": "^5.4.3",
+    "text-mask-addons": "^3.8.0"
   },
   "scripts": {
     "start": "react-scripts start",

@@ -2,14 +2,13 @@ import React,{useState} from 'react';
 import './Form.css';
 import {authenticate, singin} from    '../../auth/index';
 import { useHistory} from  'react-router-dom';
-import logo from '../../images/loginP.png';
 
 
 
 export default function Form() {
     const [values, setValues] = useState({
-        name:"johny",
-        password:"johny1234",
+        name:"",
+        password:"",
         error:'',
         loading:false,
     });
@@ -56,30 +55,54 @@ export default function Form() {
     )
 
     const singinForm = () =>(
-        
-            <div className="container">
-            <div className="loginbox">
-            <img src={logo} className="avatar" alt="avatar"/>
-                <h1>Login</h1>
-                <form >
-                    <p>Usuário</p>
-                    <input type="text" id="username" 
-                    placeholder="Digite aqui o seu usuário"
-                    onChange={hadleChange('name')}
-                    value={name}
-                    />
-                    <p>Senha</p>
-                    <input type="password" id="password" 
-                    placeholder="Digite aqui sua senha"
-                    onChange={hadleChange('password')}
-                    value={password}
-                    />
-                    <input  onClick={clickSubmit} type="button"  id="submit" value="Entrar"/>
-                </form>
-               
+
+
+            <div>
+                <header>
+                    <div className="main-header">
+                        <h1>Login</h1>
+                        <hr/>
+                        <h3>Bem Vindo</h3>
+                        <p><input 
+                            onChange={hadleChange('name')}
+                            value={name}
+                            type="text" 
+                            placeholder="Usuário"
+                            /></p>
+                        <p><input 
+                        type="password"
+                         placeholder="Senha"
+                         onChange={hadleChange('password')}
+                         value={password}/></p>
+                        <p><button onClick={clickSubmit}>Entrar</button></p>
+                    </div>
+                </header>
             </div>
+
+        
+            // <div className="container">
+            // <div className="loginbox">
+            // <img src={logo} className="avatar" alt="avatar"/>
+            //     <h1>Login</h1>
+            //     <form >
+            //         <p>Usuário</p>
+            //         <input type="text" id="username" 
+            //         placeholder="Digite aqui o seu usuário"
+            //         onChange={hadleChange('name')}
+            //         value={name}
+            //         />
+            //         <p>Senha</p>
+            //         <input type="password" id="password" 
+            //         placeholder="Digite aqui sua senha"
+            //         onChange={hadleChange('password')}
+            //         value={password}
+            //         />
+            //         <input  onClick={clickSubmit} type="button"  id="submit" value="Entrar"/>
+            //     </form>
+               
+        //     </div>
             
-        </div>
+        // </div>
         
     );
 
@@ -88,7 +111,7 @@ export default function Form() {
            {showLoading()}
            {showError()}
            {singinForm()}
-           {/* {redirectUser()} */}
+           {/* {redirectUser()}  */}
        </div>
     )
 }

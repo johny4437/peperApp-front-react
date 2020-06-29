@@ -14,22 +14,27 @@ import {useHistory} from 'react-router-dom'
              <nav>
                  <label >Dashboard</label>
                  <ul>
-                     <li><a href="#" onClick={()=> singout(()=>{
+                     <li onClick={()=> singout(()=>{
                          history.push('/')
-                     })}><i className="fa fa-sign-out"></i>Sair</a></li>
+                     })}><i className="fa fa-sign-out"></i>Sair</li>
                  </ul>
                  <label htmlFor="menu" className="menu-bar">
                      <i className="fa fa-bars"></i>
                  </label>
              </nav>
              <div className="side-menu">
-                 <a href="#"><i className="fa fa-user"></i><span>Adicionar Preço</span></a>
-                 <a href="#"><i className="fa fa-envelope"></i><span>Últimos preços</span></a>
-                 <a href="#"><i className="fa fa-calendar"></i><span>Preços</span></a>
-                 <a href="#"><i className="fa fa-user"></i><span>Preços</span></a>
-                 <a href="#"><i className="fa fa-user"></i><span>Preços</span></a>
+                 <li><i className="fa fa-user"></i><span>Adicionar Preço</span></li>
+                 <li><i className="fa fa-bar-chart"></i><span>Últimos preços</span></li>
+                 {/* <li><i className="fa fa-calendar"></i><span>Preços</span></li>
+                 <li><i className="fa fa-user"></i><span>Preços</span></li>
+                 <li><i className="fa fa-user"></i><span>Preços</span></li> */}
              
-                 <a href="#" className="logout"><i className="fa fa-sign-out"></i><span>Logout</span></a>
+                 <li className="logout" 
+                  onClick={()=> singout(()=>{
+                    history.push('/')
+                })}
+                 
+                 ><i className="fa fa-sign-out"></i><span>Logout</span></li>
              
              </div>
              <div className="data">

@@ -1,5 +1,8 @@
-import React,{useState} from 'react'
+import React,{useState} from 'react';
 import './FormPrice.css';
+import CurrencyInput from './PriceInput/index';
+
+
 
 
 
@@ -36,15 +39,14 @@ export default function FormPrice() {
 
     return (
         <div className="container">
+        
             <div className="pricebox">
+                
+           
+                <p>Preço</p>
                 <form onSubmit={clickSubmit}>
-                    <p>Preço</p>
-                     <input 
-                     type="text"
-                      value={price}
-                      onChange={e => setPrice(e.target.value)} 
-                      step="0.01" 
-                      min="0.00"/>
+                   <CurrencyInput type="text" placeholder="$0.00" value={price} onChange={e => setPrice(e.target.value)} />
+                     
                      <input 
                      
                      type='submit' 

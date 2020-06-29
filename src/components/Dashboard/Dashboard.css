@@ -7,7 +7,6 @@
 }
 nav{
     background: #353b48;
-    line-height: 80px;
     position: fixed;
     width: 100%;
     border-bottom: 2px solid #718093;
@@ -24,18 +23,14 @@ nav ul{
     margin-right: 20px;
 }
 nav ul li{
-    line-height: 80px;
-    margin: 0 10px;
-}
-nav ul li a{
     color: #fff;
-    font-size: 20px;
-    padding: 6px 15px;
-    font-weight: 600;
-    background: #718093;
+    background: #40739e;
+    margin-top: 20px;
+    padding: 10px;
     border-radius: 5px;
 }
-nav ul li a:hover{
+
+nav ul li:hover{
     cursor: pointer;
     background-color: #dcdde1;
     color: #000;
@@ -46,17 +41,19 @@ nav ul li a:hover{
     background: #353b48;
     width: 250px;
     height: 100%;
-    margin-top: 85px;
+    margin-top: 80px;
 }
-.side-menu a{
+.side-menu li{
+    list-style: none;
     display: block;
     line-height: 60px;
     color: #fff;
     transition: 0.5s;
 }
-.side-menu a:hover{
+.side-menu li:hover{
     background: #40739e;
     padding-left: 20px;
+    cursor: pointer;
 }
 .side-menu span{
     font-size: 20px;
@@ -82,13 +79,13 @@ nav .menu-bar{
 }
 
 @media(max-width:850px){
-    .side-menu a span{
+    .side-menu li span{
         display: none;
     }
     .side-menu{
         width: 100px;
     }
-    .side-menu a i{
+    .side-menu li i{
         display: block;
         line-height: 80px;
         text-align: center;
@@ -97,12 +94,13 @@ nav .menu-bar{
     }
     .data{
         margin-left: 100px;
+        
     }
 }
 @media(max-width:650px){
     .data{
         display: block;
-        z-index: 3;
+        top: 50%;
     }
     nav ul{
         display: none;
@@ -115,11 +113,13 @@ nav .menu-bar{
         transition: all 0.5s;
         z-index: 1;
     }
-    .side-menu a i{
+    .side-menu li i{
         display: none;
+        z-index: 1;
     }
-    .side-menu a span{
+    .side-menu li span{
         display: block;
+        z-index: 1;
     }
     .side-menu .logout{
         display: block;
