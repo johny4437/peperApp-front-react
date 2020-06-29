@@ -17,7 +17,7 @@ export default function FormPrice() {
         console.log(typeof price)
         console.log(price)
 
-        await fetch('http://localhost:4000/price/create',{
+        await fetch('http://www.burnbrain.net/peper/price/create',{
             method:"POST",
             headers:{
                 "Content-Type": "application/json",
