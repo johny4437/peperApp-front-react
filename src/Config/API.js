@@ -6,6 +6,6 @@
 
 // export default api;
 
-//export const API = 'http://localhost:4000';
-export const API = 'http://www.burnbrain.net/peper';
+export const API = 'http://localhost:4000';
+
 

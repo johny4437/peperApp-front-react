@@ -100,10 +100,11 @@ nav .menu-bar{
 @media(max-width:650px){
     .data{
         display: block;
-        top: 50%;
+       
     }
     nav ul{
         display: none;
+        z-index: 1;
     }
     .side-menu{
         width: 100%;
@@ -111,7 +112,7 @@ nav .menu-bar{
         left: 100%;
         background: #718093;
         transition: all 0.5s;
-        z-index: 1;
+        
     }
     .side-menu li i{
         display: none;
@@ -130,4 +131,7 @@ nav .menu-bar{
 }
 #menu:checked ~ .side-menu{
     left: 0;
+}
+#menu:checked ~ .data{
+    display: none;
 }

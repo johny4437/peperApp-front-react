@@ -1,5 +1,6 @@
 import React,{useState} from 'react';
 import './FormPrice.css';
+import {API} from '../../Config/API'
 import CurrencyInput from './PriceInput/index';
 
 
@@ -8,6 +9,8 @@ import CurrencyInput from './PriceInput/index';
 
 export default function FormPrice() {
     const [price, setPrice] = useState("");
+    const [sucess, setSucess] = useState(false);
+    const [error,setError] = useState(false);
 
 
     const clickSubmit = async event =>{
@@ -18,7 +21,7 @@ export default function FormPrice() {
         const formatedPrice = price.replace("R$ ", "")
         console.log(price)
 
-        await fetch('http://www.burnbrain.net/peper/price/create',{
+        await fetch(`${API}/price/create`,{
             method:"POST",
             headers:{
                 "Content-Type": "application/json",
@@ -30,13 +33,25 @@ export default function FormPrice() {
             },
             body:JSON.stringify({price: formatedPrice})
 
-        }).then(response =>{
-            return  response.json()
-            }).catch(err => console.log(err))
+        }).then(data =>{
+            if(data.error){
+                setError(true)
+            }else{
+                setSucess(true);
+                setPrice("")
+            }
+            })
         
         
     
     }
+
+    const showSuccess = () =>(
+        <div className="alert" style={{display: sucess  ? '' : 'none'}}>
+            <h2> Preço inserido</h2>
+        </div>
+    )
+
 
     return (
         <div className="container">
@@ -46,7 +61,7 @@ export default function FormPrice() {
            
                 <p>Preço</p>
                 <form onSubmit={clickSubmit}>
-                   <CurrencyInput type="text" placeholder="R$ 0,00" value={price} onChange={e => setPrice(e.target.value)} />
+                   <CurrencyInput type="text"  placeholder="R$ 0,00" value={price} onChange={e => setPrice(e.target.value)}  required/>
                      
                      <input 
                      
@@ -54,7 +69,9 @@ export default function FormPrice() {
                      value="adicionar"
                      
                      />
+
                 </form>
+                {showSuccess()}
             </div>
         </div>
     )
